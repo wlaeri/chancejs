@@ -17,7 +17,8 @@
     "packages/character",
     "packages/letter",
     "packages/hex",
-    "packages/chance"
+    "packages/chance",
+    "packages/capitalize"
   ],
   "engines": {
     "yarn": ">=1",
