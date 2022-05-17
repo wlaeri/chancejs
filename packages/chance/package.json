@@ -44,6 +44,7 @@
     "@chancejs/hex": "1.0.0",
     "@chancejs/integer": "1.0.0",
     "@chancejs/letter": "1.0.0",
-    "@chancejs/natural": "1.0.0"
+    "@chancejs/natural": "1.0.0",
+    "@chancejs/capitalize": "1.0.0"
   }
 }
