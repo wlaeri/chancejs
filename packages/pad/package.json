@@ -1,7 +1,7 @@
 {
   "name": "@chancejs/pad",
   "version": "1.0.0",
-  "description": "Generate a random pad with Chance.js.",
+  "description": "Generate padded number with Chance.js.",
   "homepage": "https://chancejs.com/",
   "author": "Victor Quinn <mail@victorquinn.com>",
   "main": "./lib/cjs/index.js",
