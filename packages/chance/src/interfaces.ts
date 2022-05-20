@@ -11,6 +11,7 @@ import {
   IRandomNumberGenerator,
   RandomNumberGeneratorFunction,
 } from "@chancejs/generator";
+import { IPickOneGenerator } from "@chancejs/pickone";
 
 /**
  * Types originally borrowed from the @types/chance type definitions.
@@ -40,4 +41,5 @@ export type IChance = IRandomNumberGenerator &
   ICharacterGenerator &
   INaturalGenerator &
   IIntegerGenerator &
-  IBooleanGenerator;
+  IBooleanGenerator &
+  IPickOneGenerator;
