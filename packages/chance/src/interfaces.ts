@@ -1,4 +1,5 @@
 // plop-interface-imports
+import { IPickSetGenerator } from "@chancejs/pickset";
 import { ILetterGenerator } from "@chancejs/letter";
 import { IHexGenerator } from "@chancejs/hex";
 import { IFloatingGenerator } from "@chancejs/floating";
@@ -11,6 +12,8 @@ import {
   IRandomNumberGenerator,
   RandomNumberGeneratorFunction,
 } from "@chancejs/generator";
+import { IShuffleGenerator } from "@chancejs/shuffle";
+import { IPickOneGenerator } from "@chancejs/pickone";
 
 /**
  * Types originally borrowed from the @types/chance type definitions.
@@ -40,4 +43,7 @@ export type IChance = IRandomNumberGenerator &
   ICharacterGenerator &
   INaturalGenerator &
   IIntegerGenerator &
-  IBooleanGenerator;
+  IBooleanGenerator &
+  IShuffleGenerator &
+  IPickSetGenerator &
+  IPickOneGenerator;
