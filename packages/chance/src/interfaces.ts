@@ -12,6 +12,7 @@ import {
   RandomNumberGeneratorFunction,
 } from "@chancejs/generator";
 import { IShuffleGenerator } from "@chancejs/shuffle";
+import { IPickOneGenerator } from "@chancejs/pickone";
 
 /**
  * Types originally borrowed from the @types/chance type definitions.
@@ -42,4 +43,5 @@ export type IChance = IRandomNumberGenerator &
   INaturalGenerator &
   IIntegerGenerator &
   IBooleanGenerator &
-  IShuffleGenerator;
+  IShuffleGenerator &
+  IPickOneGenerator;
