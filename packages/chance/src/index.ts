@@ -18,9 +18,12 @@ import { CharacterGenerator, CharacterOptions } from "@chancejs/character";
 import { FalsyGenerator, FalsyOptions, Falsy } from "@chancejs/falsy";
 import { ShuffleGenerator, ShuffleOptions } from "@chancejs/shuffle";
 import { PickOneGenerator, PickOneOptions } from "@chancejs/pickone";
+import { PickSetGenerator, PickSetOptions } from "@chancejs/pickset";
+
 
 export class Chance implements IChance {
   // plop-class-fields
+  private picksetGenerator: PickSetGenerator;
   private letterGenerator: LetterGenerator;
   private hexGenerator: HexGenerator;
   private floatingGenerator: FloatingGenerator;
@@ -54,6 +57,7 @@ export class Chance implements IChance {
     this.falsyGenerator = new FalsyGenerator({ seed, generator });
     this.shuffleGenerator = new ShuffleGenerator({ seed, generator });
     this.pickOneGenerator = new PickOneGenerator({ seed, generator });
+    this.picksetGenerator = new PickSetGenerator({ seed, generator });
   }
 
   /**
@@ -124,6 +128,11 @@ export class Chance implements IChance {
   pickOne<T>(options: PickOneOptions<T>): T {
     return this.pickOneGenerator.pickOne(options);
   }
+
+  pickSet<T,>(options?: PickSetOptions<T>): Array<T> {
+    return this.picksetGenerator.pickSet(options);
+  }
+
 }
 
 export default Chance;

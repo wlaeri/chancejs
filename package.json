@@ -19,6 +19,7 @@
     "packages/hex",
     "packages/shuffle",
     "packages/pickone",
+    "packages/pickset",
     "packages/chance"
   ],
   "engines": {
