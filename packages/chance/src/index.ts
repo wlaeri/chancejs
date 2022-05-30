@@ -16,6 +16,7 @@ import { IntegerGenerator, IntegerOptions } from "@chancejs/integer";
 import { NaturalGenerator, NaturalOptions } from "@chancejs/natural";
 import { CharacterGenerator, CharacterOptions } from "@chancejs/character";
 import { FalsyGenerator, FalsyOptions, Falsy } from "@chancejs/falsy";
+import { PickOneGenerator, PickOneOptions } from "@chancejs/pickone";
 
 export class Chance implements IChance {
   // plop-class-fields
@@ -28,6 +29,7 @@ export class Chance implements IChance {
   private naturalGenerator: NaturalGenerator;
   private characterGenerator: CharacterGenerator;
   private falsyGenerator: FalsyGenerator;
+  private pickOneGenerator: PickOneGenerator;
 
   constructor(options?: ChanceOptions) {
     let seed: number | undefined = undefined;
@@ -48,6 +50,7 @@ export class Chance implements IChance {
     this.naturalGenerator = new NaturalGenerator({ seed, generator });
     this.characterGenerator = new CharacterGenerator({ seed, generator });
     this.falsyGenerator = new FalsyGenerator({ seed, generator });
+    this.pickOneGenerator = new PickOneGenerator({ seed, generator });
   }
 
   /**
@@ -109,6 +112,10 @@ export class Chance implements IChance {
 
   falsy(options?: FalsyOptions): Falsy {
     return this.falsyGenerator.falsy(options);
+  }
+
+  pickOne<T>(options: PickOneOptions<T>): T {
+    return this.pickOneGenerator.pickOne(options);
   }
 }
 
