@@ -13,6 +13,8 @@ export class UniqueGenerator extends Generator implements IUniqueGenerator {
     const uniqueComparator = comparator ?? standardComparator; 
 
     const arr = [];
+    if(n! < 0)
+      throw new RangeError("Chance: n must be a positive number");
     const desiredLength = (n ?? 1);
     const MAX_DUPLICATES = desiredLength * 50;
     

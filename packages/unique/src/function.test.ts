@@ -49,6 +49,13 @@ describe("::Miscellaneous ::unique()", () => {
       });
     });
   });
+  describe("When n has value less than 0", () => {
+    it("returns range error", () => {
+      const fn = () =>
+          unique({ fn: natural, n: -10, args: [{ min: 1, max: 5 }] });
+        expect(fn).toThrow("Chance: n must be a positive number");
+    });
+  });
   describe("When unique function will take a custom comparator for comparing complex objects", () => {
     it("returns empty array", () => {
       const comparator = <T>(arr: Array<T>, val: T) => {
