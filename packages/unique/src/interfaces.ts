@@ -4,7 +4,7 @@ export interface UniqueOptions <FN extends RandomFunction>{
   fn: FN;
   args?: Parameters<FN>;
   n?:number;
-  comparator?: FN;
+  comparator?: (array: Array<ReturnType<FN>>, value: ReturnType<FN>) => boolean;
 }
 
 /**

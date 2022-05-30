@@ -1,13 +1,16 @@
-import { natural } from "@chancejs/natural";
+import Chance from "..";
 import { times } from "@chancejs/generator";
-import { pickOne } from "@chancejs/pickone";
-import { unique } from "./function";
 
-describe("::Miscellaneous ::unique()", () => {
+describe("::Chance ::Miscellaneous ::unique", () => {
+  let chance: Chance;
+  beforeEach(() => {
+    chance = new Chance();
+  });
+
   describe("When execute unique()", () => {
     it("returns a unique array of the selected function", () => {
       times(500, () => {
-        const arr = unique({ fn: natural, n: 10, args: [{ min: 0, max: 10 }] });
+        const arr = chance.unique({ fn: chance.natural.bind(chance), n: 10, args: [{ min: 0, max: 10 }] });
         expect(Array.isArray(arr)).toBe(true);
         expect(arr.length).toEqual(10);
       });
@@ -17,7 +20,7 @@ describe("::Miscellaneous ::unique()", () => {
     it("returns range error", () => {
       times(500, () => {
         const fn = () =>
-          unique({ fn: natural, n: 10, args: [{ min: 1, max: 5 }] });
+        chance.unique({ fn: chance.natural.bind(chance), n: 10, args: [{ min: 1, max: 5 }] });
         expect(fn).toThrow("Chance: n is likely too large for sample set");
       });
     });
@@ -25,7 +28,7 @@ describe("::Miscellaneous ::unique()", () => {
   describe("When doesn't pass args for random function", () => {
     it("returns correct result", () => {
       times(500, () => {
-        const arr = unique({ fn: natural, n: 10 });
+        const arr = chance.unique({ fn: chance.natural.bind(chance), n: 10 });
         expect(Array.isArray(arr)).toBe(true);
         expect(arr.length).toEqual(10);
       });
@@ -34,7 +37,7 @@ describe("::Miscellaneous ::unique()", () => {
   describe("When doesn't pass n", () => {
     it("returns array with length 1", () => {
       times(500, () => {
-        const arr = unique({ fn: natural });
+        const arr = chance.unique({ fn: chance.natural.bind(chance) });
         expect(Array.isArray(arr)).toBe(true);
         expect(arr.length).toEqual(1);
       });
@@ -43,7 +46,7 @@ describe("::Miscellaneous ::unique()", () => {
   describe("When n equals 0", () => {
     it("returns empty array", () => {
       times(500, () => {
-        const arr = unique({ fn: natural, n: 0 });
+        const arr = chance.unique({ fn: chance.natural.bind(chance), n: 0 });
         expect(Array.isArray(arr)).toBe(true);
         expect(arr.length).toEqual(0);
       });
@@ -71,9 +74,9 @@ describe("::Miscellaneous ::unique()", () => {
           {id: 4, name: "D"},
           {id: 5, name: "E"},
         ]
-        return pickOne({array: data});
+        return chance.pickOne({array: data});
       };
-      const arr = unique({ fn: fakeRandomFn, n: 5 , comparator});
+      const arr = chance.unique({ fn: fakeRandomFn, n: 5 , comparator});
       expect(Array.isArray(arr)).toBe(true);
       expect(arr.length).toEqual(5);
     });

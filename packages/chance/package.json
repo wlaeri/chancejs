@@ -45,6 +45,7 @@
     "@chancejs/integer": "1.0.0",
     "@chancejs/letter": "1.0.0",
     "@chancejs/natural": "1.0.0",
-    "@chancejs/pickone": "1.0.0"
+    "@chancejs/pickone": "1.0.0",
+    "@chancejs/unique": "1.0.0"
   }
 }
