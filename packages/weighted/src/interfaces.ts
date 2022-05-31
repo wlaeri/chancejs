@@ -5,14 +5,21 @@ export interface WeightedOptions <T>{
 }
 
  /**
-   * Return a random T.
+   * Return a random value from array considering the weights for each variable.
    *
-   * @param { WeightedOptions} [options={}]
+   * @param { WeightedOptions} options
+   * @param { WeightedOptions} options.array - array containing the values
+   * @param { WeightedOptions} options.weights - array containing the weights of values
+   * @param { WeightedOptions} options.trim - it represents if return value will be in array
    * @param {number} [seed] A numeric seed to pass to the pseudo-random number generator.
-   * @return { T }
+   * @return { T | Array<T>}
    * @example
-   * // returns T
-   * weighted()
+   * 
+   * // returns 'a'
+   * weighted({array: ['a', 'b'], weights: [100, 1]})
+   * 
+   * // returns ['a']
+   * weighted({array: ['a', 'b'], weights: [100, 1], trim: true})
    */
 export type WeightedGeneratorFunction = <T>(options: WeightedOptions<T>, seed?: number) => T | T[];
 
