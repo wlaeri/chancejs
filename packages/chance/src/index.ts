@@ -6,6 +6,7 @@
  */
 
 // plop-imports
+import { WeightedGenerator, WeightedOptions } from "@chancejs/weighted";
 import { LetterGenerator, LetterOptions } from "@chancejs/letter";
 import { HexGenerator, HexOptions } from "@chancejs/hex";
 import { FloatingGenerator, FloatingOptions } from "@chancejs/floating";
@@ -19,6 +20,7 @@ import { FalsyGenerator, FalsyOptions, Falsy } from "@chancejs/falsy";
 
 export class Chance implements IChance {
   // plop-class-fields
+  private weightedGenerator: WeightedGenerator;
   private letterGenerator: LetterGenerator;
   private hexGenerator: HexGenerator;
   private floatingGenerator: FloatingGenerator;
@@ -39,6 +41,7 @@ export class Chance implements IChance {
     }
     const generator = options?.generator;
     // plop-constructor
+    this.weightedGenerator = new WeightedGenerator({ seed, generator });
     this.letterGenerator = new LetterGenerator({ seed, generator });
     this.hexGenerator = new HexGenerator({ seed, generator });
     this.floatingGenerator = new FloatingGenerator({ seed, generator });
@@ -75,6 +78,10 @@ export class Chance implements IChance {
   }
 
   // plop-class-methods
+  weighted<T>(options: WeightedOptions<T>): T | Array<T> {
+    return this.weightedGenerator.weighted(options);
+  }
+
   letter(options?: LetterOptions): string {
     return this.letterGenerator.letter(options);
   }
