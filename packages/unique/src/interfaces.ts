@@ -8,7 +8,7 @@ export interface UniqueOptions <FN extends RandomFunction>{
 }
 
 /**
-   * Return an array of items where none repeat and also random.
+   * Return an array of random items where none repeat.
    *
    * @param { UniqueOptions} options
    * @param {UniqueOptions} options.fn - it represents the random function
@@ -17,9 +17,16 @@ export interface UniqueOptions <FN extends RandomFunction>{
    * @param {UniqueOptions} options.comparator - it represents the function that will comparate if item is already in the list
    * @param {number} [seed] A numeric seed to pass to the pseudo-random number generator.
    * @return { Array }
+   * 
    * @example
-   * // returns Array
-   * unique()
+   * //returns ["SC", "WA", "CO", "TX", "ND"]
+   * unique({fn: state, n: 5});
+   * 
+   * @example
+   * import { unique, integer } from "chance";
+   * //returns [78, 49, 7, 87, 59, 89, 84, 62, 60, 63]
+   * unique({fn: integer, n: 10, args: [{min: 0, max: 100}]});
+   * 
 */
 export type UniqueGeneratorFunction = <FN extends RandomFunction>(options: UniqueOptions<FN>, seed?: number) => Array<ReturnType<FN>>;
 
