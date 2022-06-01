@@ -6,6 +6,7 @@
  */
 
 // plop-imports
+import { SyllableGenerator, SyllableOptions } from "@chancejs/syllable";
 import { LetterGenerator, LetterOptions } from "@chancejs/letter";
 import { HexGenerator, HexOptions } from "@chancejs/hex";
 import { FloatingGenerator, FloatingOptions } from "@chancejs/floating";
@@ -16,9 +17,11 @@ import { IntegerGenerator, IntegerOptions } from "@chancejs/integer";
 import { NaturalGenerator, NaturalOptions } from "@chancejs/natural";
 import { CharacterGenerator, CharacterOptions } from "@chancejs/character";
 import { FalsyGenerator, FalsyOptions, Falsy } from "@chancejs/falsy";
+import { CapitalizeGenerator, CapitalizeOptions } from "@chancejs/capitalize";
 
 export class Chance implements IChance {
   // plop-class-fields
+  private syllableGenerator: SyllableGenerator;
   private letterGenerator: LetterGenerator;
   private hexGenerator: HexGenerator;
   private floatingGenerator: FloatingGenerator;
@@ -28,6 +31,7 @@ export class Chance implements IChance {
   private naturalGenerator: NaturalGenerator;
   private characterGenerator: CharacterGenerator;
   private falsyGenerator: FalsyGenerator;
+  private capitalizeGenerator: CapitalizeGenerator;
 
   constructor(options?: ChanceOptions) {
     let seed: number | undefined = undefined;
@@ -39,6 +43,7 @@ export class Chance implements IChance {
     }
     const generator = options?.generator;
     // plop-constructor
+    this.syllableGenerator = new SyllableGenerator({ seed, generator });
     this.letterGenerator = new LetterGenerator({ seed, generator });
     this.hexGenerator = new HexGenerator({ seed, generator });
     this.floatingGenerator = new FloatingGenerator({ seed, generator });
@@ -48,6 +53,7 @@ export class Chance implements IChance {
     this.naturalGenerator = new NaturalGenerator({ seed, generator });
     this.characterGenerator = new CharacterGenerator({ seed, generator });
     this.falsyGenerator = new FalsyGenerator({ seed, generator });
+    this.capitalizeGenerator = new CapitalizeGenerator({ seed, generator });
   }
 
   /**
@@ -75,6 +81,10 @@ export class Chance implements IChance {
   }
 
   // plop-class-methods
+  syllable(options?: SyllableOptions): string {
+    return this.syllableGenerator.syllable(options);
+  }
+
   letter(options?: LetterOptions): string {
     return this.letterGenerator.letter(options);
   }
@@ -109,6 +119,10 @@ export class Chance implements IChance {
 
   falsy(options?: FalsyOptions): Falsy {
     return this.falsyGenerator.falsy(options);
+  }
+
+  capitalize(options: CapitalizeOptions): string {
+    return this.capitalizeGenerator.capitalize(options);
   }
 }
 
