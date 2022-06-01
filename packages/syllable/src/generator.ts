@@ -5,8 +5,9 @@ import { capitalize } from "@chancejs/capitalize";
 import { SyllableOptions, ISyllableGenerator } from "./interfaces";
 
 export class SyllableGenerator extends Generator implements ISyllableGenerator {
-  public syllable(options?: SyllableOptions): string {
-    const syllableLength = options?.length ?? natural({ min: 2, max: 3 });
+  public syllable(options: SyllableOptions = {}): string {
+    const {length, capitalize: shouldCapitalize} = options;
+    const syllableLength = length ?? natural({ min: 2, max: 3 });
     const consonants = "bcdfghjklmnprstvwz", // consonants except hard to speak ones
       vowels = "aeiou", // vowels
       all = consonants + vowels; // all
@@ -27,7 +28,7 @@ export class SyllableGenerator extends Generator implements ISyllableGenerator {
       ""
     );
     
-    return !options?.capitalize? syllable : capitalize({word: syllable})
+    return !shouldCapitalize? syllable : capitalize({word: syllable})
   }
 
   private range(size: number): Array<number> {
