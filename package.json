@@ -19,6 +19,7 @@
     "packages/hex",
     "packages/capitalize",
     "packages/syllable",
+    "packages/word",
     "packages/chance"
   ],
   "engines": {
