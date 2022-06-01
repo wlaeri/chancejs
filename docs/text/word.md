@@ -1,18 +1,20 @@
 # word
 
-```js
+## ES Module
+
+```ts
+// tree-shakeable import
+import { word } from "chance";
+
 // usage
-chance.word()
-chance.word({ syllables: 3 })
-chance.word({ length: 5 })
+word({length?, syllables?, capitalize?}?, seed?)
+
+//Example
+// returns 'bappada'
+word();
 ```
 
 Return a semi-pronounceable random (nonsense) word.
-
-```js
-  chance.word();
-  => 'bappada'
-```
 
 The word is returned in all lower case.
 
@@ -28,27 +30,41 @@ syllables as we've defined here which is 2 or 3 characters, mostly alternating
 between vowel and consanant. This is the about the best we can do with purely
 random generation.
 
-```js
-  chance.word({ syllables: 3 });
-  => 'tavnamgi'
+```ts
+//returns 'tavnamgi'
+word({ syllables: 3 });
 ```
 
 Can optionally specify a length and the word will obey that bounding.
 
-```js
-  chance.word({ length: 5 });
-  => 'ralve'
+```ts
+//returns 'ralve' 
+word({ length: 5 });
 ```
-
-In this case these 2 options are mutually exclusive, that is they cannot be
-combined as they often make no sense. It wouldn't be possible to have a word
-with 7 syllables and a length of 5 or a length of 30 but 2 syllables.
 
 Therefore, if both are specified, an Exception will be thrown so the Developer
 can handle their broken case.
 
-```js
-  chance.word({ length: 5, syllables: 20 });
-  => new RangeError("Chance: Cannot specify both syllables AND length.");
+```ts
+//new RangeError("Chance: Cannot specify both syllables AND length.");
+word({ length: 5, syllables: 20 });
 ```
 
+## Class Instantiation
+
+Alternatively, you can create an instance of a `Chance` class and call the `syllable` method.
+This approach avoids instantiating a new PRNG instance on every function call.
+
+```ts
+// import the Chance class
+import { Chance } from "chance";
+
+const chance = new Chance("my-random-seed");
+
+// usage
+chance.word({length?, syllables?, capitalize?}?, seed?)
+
+//Example
+// returns 'tavnamgi'
+chance.word();
+```
