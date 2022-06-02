@@ -6,6 +6,7 @@
  */
 
 // plop-imports
+import { ParagraphGenerator, ParagraphOptions } from "@chancejs/paragraph";
 import { WordGenerator, WordOptions } from "@chancejs/word";
 import { SyllableGenerator, SyllableOptions } from "@chancejs/syllable";
 import { LetterGenerator, LetterOptions } from "@chancejs/letter";
@@ -24,6 +25,7 @@ import { SentenceGenerator, SentenceOptions } from "@chancejs/sentence";
 
 export class Chance implements IChance {
   // plop-class-fields
+  private paragraphGenerator: ParagraphGenerator;
   private wordGenerator: WordGenerator;
   private sentenceGenerator: SentenceGenerator;
   private syllableGenerator: SyllableGenerator;
@@ -49,6 +51,7 @@ export class Chance implements IChance {
     }
     const generator = options?.generator;
     // plop-constructor
+    this.paragraphGenerator = new ParagraphGenerator({ seed, generator });
     this.sentenceGenerator = new SentenceGenerator({ seed, generator });
     this.wordGenerator = new WordGenerator({ seed, generator });
     this.syllableGenerator = new SyllableGenerator({ seed, generator });
@@ -90,6 +93,10 @@ export class Chance implements IChance {
   }
 
   // plop-class-methods
+  paragraph(options?: ParagraphOptions): string {
+    return this.paragraphGenerator.paragraph(options);
+  }
+
   sentence(options?: SentenceOptions): string {
     return this.sentenceGenerator.sentence(options);
   }

@@ -22,6 +22,7 @@
     "packages/word",
     "packages/n",
     "packages/sentence",
+    "packages/paragraph",
     "packages/chance"
   ],
   "engines": {
