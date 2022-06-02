@@ -20,10 +20,12 @@ import { CharacterGenerator, CharacterOptions } from "@chancejs/character";
 import { FalsyGenerator, FalsyOptions, Falsy } from "@chancejs/falsy";
 import { CapitalizeGenerator, CapitalizeOptions } from "@chancejs/capitalize";
 import { NGenerator, NOptions, RandomFunction } from "@chancejs/n";
+import { SentenceGenerator, SentenceOptions } from "@chancejs/sentence";
 
 export class Chance implements IChance {
   // plop-class-fields
   private wordGenerator: WordGenerator;
+  private sentenceGenerator: SentenceGenerator;
   private syllableGenerator: SyllableGenerator;
   private nGenerator: NGenerator;
   private letterGenerator: LetterGenerator;
@@ -47,6 +49,7 @@ export class Chance implements IChance {
     }
     const generator = options?.generator;
     // plop-constructor
+    this.sentenceGenerator = new SentenceGenerator({ seed, generator });
     this.wordGenerator = new WordGenerator({ seed, generator });
     this.syllableGenerator = new SyllableGenerator({ seed, generator });
     this.letterGenerator = new LetterGenerator({ seed, generator });
@@ -87,6 +90,10 @@ export class Chance implements IChance {
   }
 
   // plop-class-methods
+  sentence(options?: SentenceOptions): string {
+    return this.sentenceGenerator.sentence(options);
+  }
+
   word(options?: WordOptions): string {
     return this.wordGenerator.word(options);
   }

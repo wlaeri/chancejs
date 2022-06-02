@@ -48,6 +48,7 @@
     "@chancejs/natural": "1.0.0",
     "@chancejs/syllable": "1.0.0",
     "@chancejs/word": "1.0.0",
-    "@chancejs/n": "1.0.0"
+    "@chancejs/n": "1.0.0",
+    "@chancejs/sentence": "1.0.0"
   }
 }
