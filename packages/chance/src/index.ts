@@ -6,6 +6,9 @@
  */
 
 // plop-imports
+import { ParagraphGenerator, ParagraphOptions } from "@chancejs/paragraph";
+import { WordGenerator, WordOptions } from "@chancejs/word";
+import { SyllableGenerator, SyllableOptions } from "@chancejs/syllable";
 import { LetterGenerator, LetterOptions } from "@chancejs/letter";
 import { HexGenerator, HexOptions } from "@chancejs/hex";
 import { FloatingGenerator, FloatingOptions } from "@chancejs/floating";
@@ -16,9 +19,17 @@ import { IntegerGenerator, IntegerOptions } from "@chancejs/integer";
 import { NaturalGenerator, NaturalOptions } from "@chancejs/natural";
 import { CharacterGenerator, CharacterOptions } from "@chancejs/character";
 import { FalsyGenerator, FalsyOptions, Falsy } from "@chancejs/falsy";
+import { CapitalizeGenerator, CapitalizeOptions } from "@chancejs/capitalize";
+import { NGenerator, NOptions, RandomFunction } from "@chancejs/n";
+import { SentenceGenerator, SentenceOptions } from "@chancejs/sentence";
 
 export class Chance implements IChance {
   // plop-class-fields
+  private paragraphGenerator: ParagraphGenerator;
+  private wordGenerator: WordGenerator;
+  private sentenceGenerator: SentenceGenerator;
+  private syllableGenerator: SyllableGenerator;
+  private nGenerator: NGenerator;
   private letterGenerator: LetterGenerator;
   private hexGenerator: HexGenerator;
   private floatingGenerator: FloatingGenerator;
@@ -28,6 +39,7 @@ export class Chance implements IChance {
   private naturalGenerator: NaturalGenerator;
   private characterGenerator: CharacterGenerator;
   private falsyGenerator: FalsyGenerator;
+  private capitalizeGenerator: CapitalizeGenerator;
 
   constructor(options?: ChanceOptions) {
     let seed: number | undefined = undefined;
@@ -39,6 +51,10 @@ export class Chance implements IChance {
     }
     const generator = options?.generator;
     // plop-constructor
+    this.paragraphGenerator = new ParagraphGenerator({ seed, generator });
+    this.sentenceGenerator = new SentenceGenerator({ seed, generator });
+    this.wordGenerator = new WordGenerator({ seed, generator });
+    this.syllableGenerator = new SyllableGenerator({ seed, generator });
     this.letterGenerator = new LetterGenerator({ seed, generator });
     this.hexGenerator = new HexGenerator({ seed, generator });
     this.floatingGenerator = new FloatingGenerator({ seed, generator });
@@ -48,6 +64,8 @@ export class Chance implements IChance {
     this.naturalGenerator = new NaturalGenerator({ seed, generator });
     this.characterGenerator = new CharacterGenerator({ seed, generator });
     this.falsyGenerator = new FalsyGenerator({ seed, generator });
+    this.capitalizeGenerator = new CapitalizeGenerator({ seed, generator });
+    this.nGenerator = new NGenerator({ seed, generator });
   }
 
   /**
@@ -75,6 +93,22 @@ export class Chance implements IChance {
   }
 
   // plop-class-methods
+  paragraph(options?: ParagraphOptions): string {
+    return this.paragraphGenerator.paragraph(options);
+  }
+
+  sentence(options?: SentenceOptions): string {
+    return this.sentenceGenerator.sentence(options);
+  }
+
+  word(options?: WordOptions): string {
+    return this.wordGenerator.word(options);
+  }
+
+  syllable(options?: SyllableOptions): string {
+    return this.syllableGenerator.syllable(options);
+  }
+
   letter(options?: LetterOptions): string {
     return this.letterGenerator.letter(options);
   }
@@ -109,6 +143,14 @@ export class Chance implements IChance {
 
   falsy(options?: FalsyOptions): Falsy {
     return this.falsyGenerator.falsy(options);
+  }
+
+  capitalize(options: CapitalizeOptions): string {
+    return this.capitalizeGenerator.capitalize(options);
+  }
+  
+  n<FN extends RandomFunction>(options: NOptions<FN>): Array<ReturnType<FN>> {
+    return this.nGenerator.n(options);
   }
 }
 
