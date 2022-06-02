@@ -19,11 +19,13 @@ import { NaturalGenerator, NaturalOptions } from "@chancejs/natural";
 import { CharacterGenerator, CharacterOptions } from "@chancejs/character";
 import { FalsyGenerator, FalsyOptions, Falsy } from "@chancejs/falsy";
 import { CapitalizeGenerator, CapitalizeOptions } from "@chancejs/capitalize";
+import { NGenerator, NOptions, RandomFunction } from "@chancejs/n";
 
 export class Chance implements IChance {
   // plop-class-fields
   private wordGenerator: WordGenerator;
   private syllableGenerator: SyllableGenerator;
+  private nGenerator: NGenerator;
   private letterGenerator: LetterGenerator;
   private hexGenerator: HexGenerator;
   private floatingGenerator: FloatingGenerator;
@@ -57,6 +59,7 @@ export class Chance implements IChance {
     this.characterGenerator = new CharacterGenerator({ seed, generator });
     this.falsyGenerator = new FalsyGenerator({ seed, generator });
     this.capitalizeGenerator = new CapitalizeGenerator({ seed, generator });
+    this.nGenerator = new NGenerator({ seed, generator });
   }
 
   /**
@@ -130,6 +133,10 @@ export class Chance implements IChance {
 
   capitalize(options: CapitalizeOptions): string {
     return this.capitalizeGenerator.capitalize(options);
+  }
+  
+  n<FN extends RandomFunction>(options: NOptions<FN>): Array<ReturnType<FN>> {
+    return this.nGenerator.n(options);
   }
 }
 

@@ -1,6 +1,7 @@
 // plop-interface-imports
 import { IWordGenerator } from "@chancejs/word";
 import { ISyllableGenerator } from "@chancejs/syllable";
+import { INGenerator } from "@chancejs/n";
 import { ILetterGenerator } from "@chancejs/letter";
 import { IHexGenerator } from "@chancejs/hex";
 import { IFloatingGenerator } from "@chancejs/floating";
@@ -38,6 +39,7 @@ export type IChance = IRandomNumberGenerator &
   // plop-interface-union
   IWordGenerator &
   ISyllableGenerator &
+  INGenerator &
   ILetterGenerator &
   IHexGenerator &
   IFloatingGenerator &
