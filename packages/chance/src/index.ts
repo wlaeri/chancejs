@@ -6,6 +6,7 @@
  */
 
 // plop-imports
+import { HourGenerator, HourOptions } from "@chancejs/hour";
 import { LetterGenerator, LetterOptions } from "@chancejs/letter";
 import { HexGenerator, HexOptions } from "@chancejs/hex";
 import { FloatingGenerator, FloatingOptions } from "@chancejs/floating";
@@ -19,6 +20,7 @@ import { FalsyGenerator, FalsyOptions, Falsy } from "@chancejs/falsy";
 
 export class Chance implements IChance {
   // plop-class-fields
+  private hourGenerator: HourGenerator;
   private letterGenerator: LetterGenerator;
   private hexGenerator: HexGenerator;
   private floatingGenerator: FloatingGenerator;
@@ -39,6 +41,7 @@ export class Chance implements IChance {
     }
     const generator = options?.generator;
     // plop-constructor
+    this.hourGenerator = new HourGenerator({ seed, generator });
     this.letterGenerator = new LetterGenerator({ seed, generator });
     this.hexGenerator = new HexGenerator({ seed, generator });
     this.floatingGenerator = new FloatingGenerator({ seed, generator });
@@ -109,6 +112,10 @@ export class Chance implements IChance {
 
   falsy(options?: FalsyOptions): Falsy {
     return this.falsyGenerator.falsy(options);
+  }
+
+  hour(options?: HourOptions): number {
+    return this.hourGenerator.hour(options);
   }
 }
 
