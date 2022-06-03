@@ -6,6 +6,7 @@
  */
 
 // plop-imports
+import { MillisecondGenerator, MillisecondOptions } from "@chancejs/millisecond";
 import { LetterGenerator, LetterOptions } from "@chancejs/letter";
 import { HexGenerator, HexOptions } from "@chancejs/hex";
 import { FloatingGenerator, FloatingOptions } from "@chancejs/floating";
@@ -19,6 +20,7 @@ import { FalsyGenerator, FalsyOptions, Falsy } from "@chancejs/falsy";
 
 export class Chance implements IChance {
   // plop-class-fields
+  private millisecondGenerator: MillisecondGenerator;
   private letterGenerator: LetterGenerator;
   private hexGenerator: HexGenerator;
   private floatingGenerator: FloatingGenerator;
@@ -48,6 +50,7 @@ export class Chance implements IChance {
     this.naturalGenerator = new NaturalGenerator({ seed, generator });
     this.characterGenerator = new CharacterGenerator({ seed, generator });
     this.falsyGenerator = new FalsyGenerator({ seed, generator });
+    this.millisecondGenerator = new MillisecondGenerator({ seed, generator });
   }
 
   /**
@@ -109,6 +112,10 @@ export class Chance implements IChance {
 
   falsy(options?: FalsyOptions): Falsy {
     return this.falsyGenerator.falsy(options);
+  }
+
+  millisecond(options?: MillisecondOptions): number {
+    return this.millisecondGenerator.millisecond(options);
   }
 }
 
