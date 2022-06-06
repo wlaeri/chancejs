@@ -17,6 +17,8 @@
     "packages/character",
     "packages/letter",
     "packages/hex",
+    "packages/pickone",
+    "packages/month",
     "packages/chance"
   ],
   "engines": {
