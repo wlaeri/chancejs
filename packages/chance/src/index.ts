@@ -6,6 +6,7 @@
  */
 
 // plop-imports
+import { MonthGenerator, MonthOptions, MonthOrName } from "@chancejs/month";
 import { LetterGenerator, LetterOptions } from "@chancejs/letter";
 import { HexGenerator, HexOptions } from "@chancejs/hex";
 import { FloatingGenerator, FloatingOptions } from "@chancejs/floating";
@@ -20,6 +21,7 @@ import { PickOneGenerator, PickOneOptions } from "@chancejs/pickone";
 
 export class Chance implements IChance {
   // plop-class-fields
+  private monthGenerator: MonthGenerator;
   private letterGenerator: LetterGenerator;
   private hexGenerator: HexGenerator;
   private floatingGenerator: FloatingGenerator;
@@ -41,6 +43,7 @@ export class Chance implements IChance {
     }
     const generator = options?.generator;
     // plop-constructor
+    this.monthGenerator = new MonthGenerator({ seed, generator });
     this.letterGenerator = new LetterGenerator({ seed, generator });
     this.hexGenerator = new HexGenerator({ seed, generator });
     this.floatingGenerator = new FloatingGenerator({ seed, generator });
@@ -78,6 +81,10 @@ export class Chance implements IChance {
   }
 
   // plop-class-methods
+  month<T extends boolean>(options?: MonthOptions<T>): MonthOrName<T> {
+    return this.monthGenerator.month(options);
+  }
+
   letter(options?: LetterOptions): string {
     return this.letterGenerator.letter(options);
   }
