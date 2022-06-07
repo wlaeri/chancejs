@@ -1,7 +1,7 @@
 import { times } from "@chancejs/generator";
 import Chance from "..";
 
-describe("::Time ::timezone()", () => {
+describe("::Chance ::Time ::#timezone", () => {
   let chance: Chance;
   beforeEach(() => {
     chance = new Chance();
