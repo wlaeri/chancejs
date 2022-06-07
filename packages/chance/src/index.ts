@@ -6,6 +6,7 @@
  */
 
 // plop-imports
+import { WeekdayGenerator, WeekdayOptions } from "@chancejs/weekday";
 import { LetterGenerator, LetterOptions } from "@chancejs/letter";
 import { HexGenerator, HexOptions } from "@chancejs/hex";
 import { FloatingGenerator, FloatingOptions } from "@chancejs/floating";
@@ -20,6 +21,7 @@ import { PickOneGenerator, PickOneOptions } from "@chancejs/pickone";
 
 export class Chance implements IChance {
   // plop-class-fields
+  private weekdayGenerator: WeekdayGenerator;
   private letterGenerator: LetterGenerator;
   private hexGenerator: HexGenerator;
   private floatingGenerator: FloatingGenerator;
@@ -41,6 +43,7 @@ export class Chance implements IChance {
     }
     const generator = options?.generator;
     // plop-constructor
+    this.weekdayGenerator = new WeekdayGenerator({ seed, generator });
     this.letterGenerator = new LetterGenerator({ seed, generator });
     this.hexGenerator = new HexGenerator({ seed, generator });
     this.floatingGenerator = new FloatingGenerator({ seed, generator });
@@ -78,6 +81,10 @@ export class Chance implements IChance {
   }
 
   // plop-class-methods
+  weekday(options?: WeekdayOptions): string {
+    return this.weekdayGenerator.weekday(options);
+  }
+
   letter(options?: LetterOptions): string {
     return this.letterGenerator.letter(options);
   }
