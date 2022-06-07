@@ -1,4 +1,5 @@
 // plop-interface-imports
+import { ITimezoneGenerator } from "@chancejs/timezone";
 import { ILetterGenerator } from "@chancejs/letter";
 import { IHexGenerator } from "@chancejs/hex";
 import { IFloatingGenerator } from "@chancejs/floating";
@@ -34,6 +35,7 @@ export interface ChanceOptions {
 
 export type IChance = IRandomNumberGenerator &
   // plop-interface-union
+  ITimezoneGenerator &
   ILetterGenerator &
   IHexGenerator &
   IFloatingGenerator &
