@@ -17,6 +17,11 @@
     "packages/character",
     "packages/letter",
     "packages/hex",
+    "packages/capitalize",
+    "packages/syllable",
+    "packages/word",
+    "packages/n",
+    "packages/sentence",
     "packages/chance"
   ],
   "engines": {
