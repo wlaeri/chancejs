@@ -6,6 +6,8 @@ import { word } from "@chancejs/word";
 import { SentenceOptions, ISentenceGenerator } from "./interfaces";
 
 export class SentenceGenerator extends Generator implements ISentenceGenerator {
+  // Could get smarter about this than generating random words and
+  // chaining them together. Such as: http://vq.io/1a5ceOh
   public sentence(options: SentenceOptions = {}): string {
     const {words, punctuation} = options;
 
